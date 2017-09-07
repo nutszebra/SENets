@@ -48,15 +48,21 @@ if __name__ == '__main__':
     parser.add_argument('--N', '-n', type=int,
                         default=18,
                         help='width hyperparameter')
+    parser.add_argument('--multiplier', '-multiplier', type=int,
+                        default=4,
+                        help='multiplier for last convolution of block')
 
     args = parser.parse_args().__dict__
+    print(args)
     lr = args.pop('lr')
     k = args.pop('k')
     N = args.pop('N')
+    multiplier = args.pop('multiplier')
 
     print('generating model')
-    model = residual_net.ResidualNetwork(10, block_num=3, out_channels=(16 * k, 32 * k, 64 * k), N=(N, N, N))
+    model = residual_net.ResidualNetwork(10, block_num=3, out_channels=(16 * k, 32 * k, 64 * k), N=(N, N, N), multiplier=multiplier)
     print('Done')
+    print('Parameters: {}'.format(model.count_parameters()))
     optimizer = nutszebra_optimizer.OptimizerResnet(model, lr=lr)
     args['model'] = model
     args['optimizer'] = optimizer

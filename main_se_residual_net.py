@@ -56,6 +56,7 @@ if __name__ == '__main__':
                         help='multiplier for last convolution of block')
 
     args = parser.parse_args().__dict__
+    print(args)
     lr = args.pop('lr')
     k = args.pop('k')
     N = args.pop('N')
@@ -65,6 +66,7 @@ if __name__ == '__main__':
     print('generating model')
     model = se_residual_net.SEResidualNetwork(10, block_num=3, out_channels=(16 * k, 32 * k, 64 * k), N=(N, N, N), multiplier=multiplier, r=r)
     print('Done')
+    print('Parameters: {}'.format(model.count_parameters()))
     optimizer = nutszebra_optimizer.OptimizerResnet(model, lr=lr)
     args['model'] = model
     args['optimizer'] = optimizer
