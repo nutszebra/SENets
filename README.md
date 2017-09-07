@@ -18,11 +18,10 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
 
 # Details about my implementation
 
-* Data Augmentation
-
-Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patches are extracted randomly and are normalized locally. Horizontal flipping is applied with 0.5 probability. Cutout [[3]][Paper3] is applied with 0.5 probability (16x16 window). 
-
-Test: Pictures are resized to 32x32, then they are normalized locally. Single image test is used to calculate total accuracy.  
+* Data Augmentation:
+    
+    Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patches are extracted randomly and are normalized locally. Horizontal flipping is applied with 0.5 probability. Cutout [[3]][Paper3] is applied with 0.5 probability (16x16 window). 
+    Test: Pictures are resized to 32x32, then they are normalized locally. Single image test is used to calculate total accuracy.  
 * Optimization: Momentum SGD (momentum is 0.9)
 
 * Scheduling: 0.1 is multiplied to learning rate at [100, 150] epochs.
@@ -36,11 +35,11 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 
 # Cifar10 result
 
-| network                                                             | depth | total accuracy (%) |
-|:-----------------------------------------------------|--------------|-------------------:|
-| SEResNet(my implementation) [[2]][Paper2]            | 164 + 108    | soon               |
-| ResNet [[1]][Paper]                                  | 164          | 94.54              |
-| my implementation[[1]][Paper]                        | 164          | soon               |
+| network                                     | depth        | Parameters (M) | total accuracy (%) |
+|:--------------------------------------------|--------------|----------------|-------------------:|
+| SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  2.4           |soon                |
+| ResNet [[1]][Paper]                         | 164          |  1.6           |94.54               |
+| ResNet (my implementation)[[1]][Paper]      | 164          |  1.6           |soon                |
 
 
 <img src="https://github.com/nutszebra/SENets/blob/master/loss.jpg" alt="loss" title="loss">
