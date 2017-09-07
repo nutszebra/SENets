@@ -21,6 +21,7 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
 * Data Augmentation:
     
     Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patches are extracted randomly and are normalized locally. Horizontal flipping is applied with 0.5 probability. Cutout [[3]][Paper3] is applied with 0.5 probability (16x16 window). 
+
     Test: Pictures are resized to 32x32, then they are normalized locally. Single image test is used to calculate total accuracy.  
 * Optimization: Momentum SGD (momentum is 0.9)
 
