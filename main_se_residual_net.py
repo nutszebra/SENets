@@ -22,7 +22,7 @@ if __name__ == '__main__':
                         default='./',
                         help='model and optimizer will be saved every epoch')
     parser.add_argument('--epoch', '-e', type=int,
-                        default=164,
+                        default=200,
                         help='maximum epoch')
     parser.add_argument('--batch', '-b', type=int,
                         default=128,
@@ -34,10 +34,10 @@ if __name__ == '__main__':
                         default=1,
                         help='start from this epoch')
     parser.add_argument('--train_batch_divide', '-trb', type=int,
-                        default=4,
+                        default=1,
                         help='divid batch number by this')
     parser.add_argument('--test_batch_divide', '-teb', type=int,
-                        default=4,
+                        default=1,
                         help='divid batch number by this')
     parser.add_argument('--lr', '-lr', type=float,
                         default=0.1,
@@ -51,15 +51,19 @@ if __name__ == '__main__':
     parser.add_argument('--r', '-r', type=int,
                         default=4,
                         help='compression rate: r')
+    parser.add_argument('--multiplier', '-multiplier', type=int,
+                        default=4,
+                        help='multiplier for last convolution of block')
 
     args = parser.parse_args().__dict__
     lr = args.pop('lr')
     k = args.pop('k')
     N = args.pop('N')
     r = args.pop('r')
+    multiplier = args.pop('multiplier')
 
     print('generating model')
-    model = se_residual_net.SEResidualNetwork(10, block_num=3, out_channels=(16 * k, 32 * k, 64 * k), N=(N, N, N), r=r)
+    model = se_residual_net.SEResidualNetwork(10, block_num=3, out_channels=(16 * k, 32 * k, 64 * k), N=(N, N, N), multiplier=multiplier, r=r)
     print('Done')
     optimizer = nutszebra_optimizer.OptimizerResnet(model, lr=lr)
     args['model'] = model
