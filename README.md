@@ -18,14 +18,21 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
 
 # Details about my implementation
 
+* Data Augmentation
+
 Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patches are extracted randomly and are normalized locally. Horizontal flipping is applied with 0.5 probability. Cutout [[3]][Paper3] is applied with 0.5 probability (16x16 window). 
 
 Test: Pictures are resized to 32x32, then they are normalized locally. Single image test is used to calculate total accuracy.  
-Optimization: Momentum SGD (momentum is 0.9)
+* Optimization: Momentum SGD (momentum is 0.9)
 
-Scheduling: 0.1 is multiplied to learning rate at [100, 150] epochs.
+* Scheduling: 0.1 is multiplied to learning rate at [100, 150] epochs.
 
-Initial learning rate: 0.1, but warm-up learnig rate, 0.01, is only used at first epoch.
+* Initial learning rate: 0.1, but warm-up learnig rate, 0.01, is only used at first epoch.
+
+* Weight decay    
+0.0001  
+
+
 
 # Cifar10 result
 
