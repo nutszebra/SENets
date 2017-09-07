@@ -29,8 +29,7 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
 
 * Initial learning rate: 0.1, but warm-up learnig rate, 0.01, is only used at first epoch.
 
-* Weight decay    
-0.0001  
+* Weight decay: 0.0001  
 
 
 
