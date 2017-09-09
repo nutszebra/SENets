@@ -22,10 +22,10 @@ if __name__ == '__main__':
                         default='./',
                         help='model and optimizer will be saved every epoch')
     parser.add_argument('--epoch', '-e', type=int,
-                        default=164,
+                        default=250,
                         help='maximum epoch')
     parser.add_argument('--batch', '-b', type=int,
-                        default=128,
+                        default=64,
                         help='mini batch number')
     parser.add_argument('--gpu', '-g', type=int,
                         default=-1,
@@ -34,10 +34,10 @@ if __name__ == '__main__':
                         default=1,
                         help='start from this epoch')
     parser.add_argument('--train_batch_divide', '-trb', type=int,
-                        default=4,
+                        default=1,
                         help='divid batch number by this')
     parser.add_argument('--test_batch_divide', '-teb', type=int,
-                        default=4,
+                        default=1,
                         help='divid batch number by this')
     parser.add_argument('--lr', '-lr', type=float,
                         default=0.1,
