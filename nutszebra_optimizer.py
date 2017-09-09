@@ -18,7 +18,7 @@ class Optimizer(object):
 
 class OptimizerResnet(Optimizer):
 
-    def __init__(self, model=None, schedule=(100, 150), lr=0.1, momentum=0.9, weight_decay=1.0e-4, warm_up_lr=0.01):
+    def __init__(self, model=None, schedule=(150, 200), lr=0.1, momentum=0.9, weight_decay=1.0e-4, warm_up_lr=0.01):
         super(OptimizerResnet, self).__init__(model)
         optimizer = optimizers.MomentumSGD(warm_up_lr, momentum)
         weight_decay = chainer.optimizer.WeightDecay(weight_decay)
