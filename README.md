@@ -39,10 +39,10 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
 
 | network                                     | depth        | Compression Rate: r |Parameters (M) | total accuracy (%) |
 |:--------------------------------------------|--------------|---------------------|---------------|-------------------:|
-| SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  8                  |               |95.69               |
+| SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  8                  | 2.0           |95.69               |
 | SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  16                 | 1.8           |95.91               |
-| ResNet [[1]][Paper]                         | 164          |  1.6                |               |94.54               |
-| ResNet (my implementation)[[1]][Paper]      | 164          |  1.6                |               |95.48               |
+| ResNet [[1]][Paper]                         | 164          |  1.6                | 1.7           |94.54               |
+| ResNet (my implementation)[[1]][Paper]      | 164          |  1.6                | 1.7           |95.48               |
 
 
 Compression Rate: 8
