@@ -10,22 +10,24 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
     # Note: chainer==1.24.0
 
 # How to run
-     # for SENets
-     python main_se_residual_net.py -g 0 -p ./result_senet -e 200 -b 128 -lr 0.1 -k 1 -n 18 -multiplier 4 -r 4
+     # for SENets with compression rate 8
+     python main_se_residual_net.py -g 0 -p ./result_senet_8 -e 250 -b 64 -lr 0.1 -k 1 -n 18 -multiplier 4 -r 8
+      # for SENets with compression rate 16
+     python main_se_residual_net.py -g 0 -p ./result_senet_16 -e 250 -b 64 -lr 0.1 -k 1 -n 18 -multiplier 4 -r 16
      # for resnet
-     python main_residual_net.py -g 0 -p ./result_resnet -e 200 -b 128 -lr 0.1 -k 1 -n 18 -multiplier 4
+     python main_residual_net.py -g 0 -p ./result_resnet -e 250 -b 64 -lr 0.1 -k 1 -n 18 -multiplier 4
 
 
 # Details about my implementation
 
 * Data Augmentation:
     
-    Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patches are extracted randomly and are normalized locally. Horizontal flipping is applied with 0.5 probability. Cutout [[3]][Paper3] is applied with 0.5 probability (16x16 window). 
+    Train: Pictures are randomly resized in the range of [32, 36], then 32x32 patches are extracted randomly and are normalized locally. Horizontal flipping is applied with 0.5 probability. Cutout [[3]][Paper3] is applied with 0.5 probability (16x16 window) before normalization. 
 
     Test: Pictures are resized to 32x32, then they are normalized locally. Single image test is used to calculate total accuracy.  
 * Optimization: Momentum SGD (momentum is 0.9)
 
-* Scheduling: 0.1 is multiplied to learning rate at [100, 150] epochs.
+* Scheduling: 0.1 is multiplied to learning rate at [150, 200] epochs.
 
 * Initial learning rate: 0.1, but warm-up learnig rate, 0.01, is only used at first epoch.
 
@@ -35,15 +37,28 @@ Implementation of Squeeze and Excitation Networks (SENets) [[2]][Paper2] by chai
 
 # Cifar10 result
 
-| network                                     | depth        | Parameters (M) | total accuracy (%) |
-|:--------------------------------------------|--------------|----------------|-------------------:|
-| SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  2.4           |soon                |
-| ResNet [[1]][Paper]                         | 164          |  1.6           |94.54               |
-| ResNet (my implementation)[[1]][Paper]      | 164          |  1.6           |soon                |
+| network                                     | depth        | Compression Rate: r |Parameters (M) | total accuracy (%) |
+|:--------------------------------------------|--------------|---------------------|---------------|-------------------:|
+| SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  8                  |               |95.69               |
+| SEResNet (my implementation) [[2]][Paper2]  | 164 + 108    |  16                 | 1.8           |95.91               |
+| ResNet [[1]][Paper]                         | 164          |  1.6                |               |94.54               |
+| ResNet (my implementation)[[1]][Paper]      | 164          |  1.6                |               |95.48               |
 
 
-<img src="https://github.com/nutszebra/SENets/blob/master/loss.jpg" alt="loss" title="loss">
-<img src="https://github.com/nutszebra/SENets/blob/master/accuracy.jpg" alt="total accuracy" title="total accuracy">
+Compression Rate: 8
+
+<img src="https://github.com/nutszebra/SENets/blob/master/result_senet_8/loss.jpg" alt="loss" title="loss">
+<img src="https://github.com/nutszebra/SENets/blob/master/result_senet_8/accuracy.jpg" alt="total accuracy" title="total accuracy">
+
+Compression Rate: 16
+
+<img src="https://github.com/nutszebra/SENets/blob/master/result_senet_16/loss.jpg" alt="loss" title="loss">
+<img src="https://github.com/nutszebra/SENets/blob/master/result_senet_16/accuracy.jpg" alt="total accuracy" title="total accuracy">
+
+ResNet:
+
+<img src="https://github.com/nutszebra/SENets/blob/master/result_resnet/loss.jpg" alt="loss" title="loss">
+<img src="https://github.com/nutszebra/SENets/blob/master/result_resnet/accuracy.jpg" alt="total accuracy" title="total accuracy">
 
 
 # References
